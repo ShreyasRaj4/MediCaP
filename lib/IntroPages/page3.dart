@@ -9,18 +9,18 @@ class IntroPage3 extends StatelessWidget {
       children: [
         Image(
           fit: BoxFit.cover,
-          image: AssetImage("images/white.jpg"),
+          image: AssetImage("images/ebebef.png"),
         ), // 1st child of the stack
         Column(children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 30),
             child: Text(
               'What we feature?',
-              style: GoogleFonts.lobster(
-                  fontSize: 50,
+              style: GoogleFonts.montserrat(
+                  fontSize: 45,
                   fontWeight: FontWeight.w600,
                   decorationColor: Colors.yellow,
-                  color: Colors.purple),
+                  color: Colors.deepPurple),
             ),
           ),
           Container(
@@ -62,15 +62,7 @@ class IntroPage3 extends StatelessWidget {
             child: Image.asset(
                 'images/corona-virus-covid-vector-banner-background-outbreak-pandemic-disease-worlds-deadly-novel-white-illustration-176857209.jpg'),
           ),
-          SizedBox(height: 50,),
-          FlatButton(
-                onPressed: () {
-                  print('Next page');
-                },
-                padding: EdgeInsets.symmetric(vertical: 10),
-                color: Colors.pink,
-                child: Text('next'),
-              ),
+         
         ]),
       ],
     );

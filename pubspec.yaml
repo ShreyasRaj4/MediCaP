@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^1.1.0
+  animated_splash_screen: ^1.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -52,6 +53,10 @@ flutter:
     - images/gettyimages-1208193852-612x612.jpg
     - images/corona-virus-covid-vector-banner-background-outbreak-pandemic-disease-worlds-deadly-novel-white-illustration-176857209.jpg
     - images/white.jpg
+    - images/78e826ca1b9351214dfdd5e47f7e2024.gif
+    - images/Logomaker-Health_Fitness-2020916.jpg
+    - images/ebebef.png
+    - images/Heart-Article-Hero-1200x500.gif
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

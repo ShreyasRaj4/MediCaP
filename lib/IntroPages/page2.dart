@@ -9,7 +9,7 @@ class IntroPage2 extends StatelessWidget {
       children: [
         Image(
           fit: BoxFit.cover,
-          image: AssetImage("images/gettyimages-1208193852-612x612.jpg"),
+          image: AssetImage("images/ebebef.png"),
         ), // 1st child of the stack
         Container(
           child: Column(
@@ -19,8 +19,7 @@ class IntroPage2 extends StatelessWidget {
                 height: 200,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(
-                        'images/corona-virus-covid-vector-banner-background-outbreak-pandemic-disease-worlds-deadly-novel-white-illustration-176857209.jpg'),
+                    image: AssetImage('images/Heart-Article-Hero-1200x500.gif'),
                   ),
                 ),
               ),
@@ -30,14 +29,14 @@ class IntroPage2 extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 width: 200,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                         color: Colors.white,
                         style: BorderStyle.solid,
                         width: 3),
                     color: Colors.yellow),
                 child: Text(
-                  'We are here to to help to get a Donar',
+                  'We are here to help you to get a Donar',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.raleway(
                     textStyle: TextStyle(
@@ -46,14 +45,6 @@ class IntroPage2 extends StatelessWidget {
                         fontWeight: FontWeight.w700),
                   ),
                 ),
-              ),
-              SizedBox(height: 100),
-              FlatButton(
-                onPressed: () {
-                  print('Next page');
-                },
-                color: Colors.pink,
-                child: Text('next'),
               ),
             ],
           ),
