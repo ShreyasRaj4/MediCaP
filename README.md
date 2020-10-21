@@ -1,6 +1,6 @@
 # MediCaP
 
-A new Flutter project.
+A new Flutter project developed for cso assignment.
 
 ## Getting Started
 
