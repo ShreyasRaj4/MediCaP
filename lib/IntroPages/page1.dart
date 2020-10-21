@@ -16,6 +16,6 @@ class IntroPage1 extends StatelessWidget {
           ), // First children of the stack
         ],
       ),
-    );
+    ); 
   }
 }

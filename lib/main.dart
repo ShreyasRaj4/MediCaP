@@ -1,35 +1,51 @@
+import 'package:MediCaP/register/login.dart';
 import 'package:flutter/material.dart';
-import './introroute.dart';
-import './homescreen.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-
-void main() => runApp(MyApp());
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:MediCaP/authentication_service.dart';
+import 'package:MediCaP/homescreen.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool isLoggedIn = false;
-    return MaterialApp(
-      title: 'MediCap',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: AnimatedSplashScreen(
-        backgroundColor: Colors.white,
-        nextScreen: (isLoggedIn)? HomeScreen(): IntroRoute(),
-        duration: 3000,
-        centered: true,
-        splash: Container(
-          height: 5000,
-          width: 5000,
-          child: Image(
-            fit: BoxFit.cover,
-            image: AssetImage('images/78e826ca1b9351214dfdd5e47f7e2024.gif'),
-          ),
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
+        StreamProvider(
+            create: (context) =>
+                context.read<AuthenticationService>().authStateChanges),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'MediCap',
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: AuthenticationWrapper(),
       ),
     );
+  }
+}
+
+class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({
+    Key key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
+
+    if (firebaseUser != null) {
+      return HomeScreen();
+    }
+    return Login();
   }
 }

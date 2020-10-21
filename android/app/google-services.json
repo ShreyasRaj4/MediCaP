@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1042284018264",
+    "firebase_url": "https://medicap-d07c1.firebaseio.com",
+    "project_id": "medicap-d07c1",
+    "storage_bucket": "medicap-d07c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042284018264:android:334358202a1c21893a282d",
+        "android_client_info": {
+          "package_name": "com.example.MediCaP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042284018264-36prsbfea3k3dfkbckfcv3gckboi2tfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV6YH-AkJrVreDlx_3aF6eE8tHK-6C-Nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042284018264-36prsbfea3k3dfkbckfcv3gckboi2tfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

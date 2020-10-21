@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:MediCaP/IntroPages/page1.dart';
 import 'package:MediCaP/IntroPages/page2.dart';
 import 'package:MediCaP/IntroPages/page3.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:MediCaP/register/login.dart';
 
 class IntroRoute extends StatelessWidget {
   @override
@@ -22,17 +24,33 @@ class IntroRoute extends StatelessWidget {
               ),
             ),
             Container(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                FlatButton(
-                  child: Text('skip'),
-                  onPressed: () {
-                    print('jhi');
-                  },
-                ),
-              ],
-            ))
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    color: Colors.transparent,
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.red,
+                      highlightColor: Colors.black,
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        elevation: 200,
+                        color: Colors.transparent,
+                        child: Text(
+                          'Skip',
+                          style: TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                        onPressed: () => Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Login())),
+                        highlightColor: Colors.pink,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
