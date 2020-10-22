@@ -1,6 +1,7 @@
 # MediCaP
 
 A new Flutter project developed for cso assignment.
+This App helps in finding a Donar.
 
 ## Getting Started
 
