@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../authentication_service.dart';
 import 'package:provider/provider.dart';
 
-class Registration extends StatefulWidget {
+class Signup extends StatefulWidget {
   @override
-  _RegistrationState createState() => _RegistrationState();
+  _SignupState createState() => _SignupState();
 }
 
-class _RegistrationState extends State<Registration> {
+class _SignupState extends State<Signup> {
   bool _showpassword = true;
 
   final TextEditingController emailController = TextEditingController();
