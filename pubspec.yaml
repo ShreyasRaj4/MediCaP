@@ -36,6 +36,7 @@ dependencies:
   form_field_validator: ^1.0.1
   flare_flutter: ^2.0.6
   flutter_auth_buttons: ^0.10.0
+  font_awesome_flutter: ^8.10.0
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +58,14 @@ flutter:
     - images/ebebef.png #p21
     - images/Heart-Article-Hero-1200x500.gif #p22
     - images/CBvirus
+    - images/chart-of-blood-types-in-drops-medical-and-vector-14313368.jpg
+    - images/businessman-profile-cartoon_18591-58479.jpg
+    - images/WhatsApp Image 2020-10-28 at 10.21.31 AM.jpeg
+    - images/bloodbank1.jpg
+    - images/bloodbank2.jpg
+    - images/bloodbank3.jpg
+    - images/bloodbank4.jpg
+    - images/bloodbank5.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

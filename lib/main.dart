@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:MediCaP/authentication_service.dart';
-import 'package:MediCaP/homescreen.dart';
+import 'package:MediCaP/home/homescreen.dart';
+
+import 'home/home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -44,7 +46,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return HomeScreen();
+      return Home();
     }
     return Login();
   }
