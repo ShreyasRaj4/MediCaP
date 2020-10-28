@@ -1,4 +1,5 @@
 import 'package:MediCaP/authentication_service.dart';
+import 'package:MediCaP/home/bloodbanks.dart';
 import 'package:MediCaP/home/userprofile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -175,88 +176,11 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          child: Image.asset('images/bloodbank1.jpg'),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        Text(
-                          'Blood bank of Dellas',
-                          style: GoogleFonts.lato(
-                              fontSize: 20, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          child: Image.asset('images/bloodbank2.jpg'),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        Text(
-                          'Blood bank of Madras',
-                          style: GoogleFonts.lato(
-                              fontSize: 20, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          child: Image.asset('images/bloodbank3.jpg'),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        Text(
-                          'Maratha Blood Bank',
-                          style: GoogleFonts.lato(
-                              fontSize: 20, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          child: Image.asset('images/bloodbank4.jpg'),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        Text(
-                          'Vijya Blood Bank',
-                          style: GoogleFonts.lato(
-                              fontSize: 20, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          child: Image.asset(
-                            'images/bloodbank5.jpg',
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        Text(
-                          'SLMS Blood Bank',
-                          style: GoogleFonts.lato(
-                              fontSize: 20, color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
+                  BLoodBank('images/bloodbank1.jpg', 'Blood Bank of Dellas'),
+                  BLoodBank('images/bloodbank2.jpg', 'Blood bank of Madras'),
+                  BLoodBank('images/bloodbank3.jpg', 'Maratha Blood Bank'),
+                  BLoodBank('images/bloodbank4.jpg', 'Vijaya Blood Bank'),
+                  BLoodBank('images/bloodbank5.jpg', 'SLMS Blood Bank'),
                 ],
               ),
             ),
@@ -267,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Image.asset(
                     'images/chart-of-blood-types-in-drops-medical-and-vector-14313368.jpg'),
               ),
-            )
+            ),
           ],
         ),
       ),
