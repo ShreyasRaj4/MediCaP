@@ -1,3 +1,4 @@
+import 'package:MediCaP/models.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
+  bool isReg=Booleans.isRegistered;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,6 +54,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
                         ),
                         onPressed: () {
                           print('sssssssssssssssssss');
+                          bool isReg=true;
+                          print(isReg);
                         },
                         child: Row(
                           children: [
@@ -84,6 +88,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               TextButton(
                 onPressed: () {
                   print('setting');
+                  print(isReg);
                 },
                 child: Text(
                   'Settings',

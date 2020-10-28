@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ..scale(scaleFactor)
         ..rotateY(isDrawerOpen ? -0.5 : 0),
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.red[200],
           borderRadius: BorderRadius.circular(isDrawerOpen ? 40 : 0.0)),
       child: SingleChildScrollView(
         child: Column(
@@ -93,24 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 children: [
                   UserProfile(
-                      'images/businessman-profile-cartoon_18591-58479.jpg',
-                      'O+',
-                      "Shreyas"),
-                  SizedBox(width: 1),
+                      'images/userphotos/profile1.jpg', 'O+', "Shreyas"),
                   UserProfile(
-                      'images/businessman-profile-cartoon_18591-58479.jpg',
-                      'O+',
-                      "Shreyas"),
-                  SizedBox(width: 1),
-                  UserProfile(
-                      'images/businessman-profile-cartoon_18591-58479.jpg',
-                      'O+',
-                      "Shreyas"),
-                  SizedBox(width: 1),
-                  UserProfile(
-                      'images/businessman-profile-cartoon_18591-58479.jpg',
-                      'O+',
-                      "Shreyas"),
+                      'images/userphotos/profile2.jpg', 'AB+', "Prasad"),
+                  UserProfile('images/userphotos/profile3.jpg', 'O-', "Shurti"),
+                  UserProfile('images/userphotos/profile4.jpg', 'B+', "Shreya"),
                 ],
               ),
             ),
@@ -131,28 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: UserProfile(
-                        'images/businessman-profile-cartoon_18591-58479.jpg',
-                        'O+',
-                        "Shreyas"),
-                  ),
-                  SizedBox(width: 1),
-                  UserProfile(
-                      'images/businessman-profile-cartoon_18591-58479.jpg',
-                      'O+',
-                      "Shreyas"),
-                  SizedBox(width: 1),
-                  UserProfile(
-                      'images/businessman-profile-cartoon_18591-58479.jpg',
-                      'O+',
-                      "Shreyas"),
-                  SizedBox(width: 1),
-                  UserProfile(
-                      'images/businessman-profile-cartoon_18591-58479.jpg',
-                      'O+',
-                      "Shreyas"),
+                  UserProfile('images/userphotos/profile5.jpg', 'AB+', "Priya"),
+                  UserProfile('images/userphotos/profile6.jpg', 'O+', "Hamsa"),
+                  UserProfile('images/userphotos/profile7.jpg', 'A+', "Srinivas"),
+                  UserProfile('images/userphotos/profile8.jpg', 'AB-', "KCR"),
                 ],
               ),
             ),

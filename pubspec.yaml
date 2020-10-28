@@ -66,6 +66,15 @@ flutter:
     - images/bloodbank3.jpg
     - images/bloodbank4.jpg
     - images/bloodbank5.jpg
+    - images/userphotos/profile1.jpg
+    - images/userphotos/profile2.jpg
+    - images/userphotos/profile3.jpg
+    - images/userphotos/profile4.jpg
+    - images/userphotos/profile5.jpg
+    - images/userphotos/profile6.jpg
+    - images/userphotos/profile7.jpg
+    - images/userphotos/profile8.jpg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
