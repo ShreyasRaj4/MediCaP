@@ -1,11 +1,11 @@
+import 'package:MediCaP/models.dart';
 import 'package:MediCaP/register/login.dart';
+import 'package:MediCaP/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:MediCaP/authentication_service.dart';
-import 'package:MediCaP/home/homescreen.dart';
-
 import 'home/home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,9 +44,9 @@ class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-
+       
     if (firebaseUser != null) {
-      return Home();
+      return  Home();
     }
     return Login();
   }

@@ -1,3 +1,8 @@
 class Booleans {
- static bool isRegistered=false; 
+ static bool isRegistered=true; 
+   
+   static void onprsed(){
+     isRegistered=true;
+   }
+
 }

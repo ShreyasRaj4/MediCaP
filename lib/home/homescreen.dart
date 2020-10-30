@@ -1,9 +1,7 @@
-import 'package:MediCaP/authentication_service.dart';
 import 'package:MediCaP/home/bloodbanks.dart';
 import 'package:MediCaP/home/userprofile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -25,14 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ..scale(scaleFactor)
         ..rotateY(isDrawerOpen ? -0.5 : 0),
       decoration: BoxDecoration(
-          color: Colors.red[200],
+          color: Colors.blue[100],
           borderRadius: BorderRadius.circular(isDrawerOpen ? 40 : 0.0)),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 30,
-            ),
+            SizedBox(height: 30),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -92,8 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  UserProfile(
-                      'images/userphotos/profile1.jpg', 'O+', "Shreyas"),
+                  UserProfile( 'images/userphotos/profile1.jpg', 'O+', "Shreyas"),
                   UserProfile(
                       'images/userphotos/profile2.jpg', 'AB+', "Prasad"),
                   UserProfile('images/userphotos/profile3.jpg', 'O-', "Shurti"),
@@ -120,7 +115,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   UserProfile('images/userphotos/profile5.jpg', 'AB+', "Priya"),
                   UserProfile('images/userphotos/profile6.jpg', 'O+', "Hamsa"),
-                  UserProfile('images/userphotos/profile7.jpg', 'A+', "Srinivas"),
+                  UserProfile(
+                      'images/userphotos/profile7.jpg', 'A+', "Srinivas"),
                   UserProfile('images/userphotos/profile8.jpg', 'AB-', "KCR"),
                 ],
               ),

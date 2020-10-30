@@ -1,6 +1,9 @@
 import 'package:MediCaP/authentication_service.dart';
+import 'package:MediCaP/models.dart';
+import 'package:MediCaP/registration.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,17 +17,16 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   bool _showpassword = true;
 
+  final _formkey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  final _formkey = GlobalKey<FormState>();
-
-  String _email, _password;
+  final TextEditingController _confPasswordController = TextEditingController();
+  String _email, _password, _confPasswod;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[200],
       body: Container(
+        decoration: BoxDecoration(color: Colors.blue[200]),
         child: Form(
           autovalidateMode: AutovalidateMode.always,
           key: _formkey,
@@ -34,23 +36,10 @@ class _SignUpState extends State<SignUp> {
               Stack(
                 children: <Widget>[
                   Positioned(
-                    top: 50,
-                    left: 120,
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      child: FlareActor(
-                        'images/CBvirus',
-                        animation: 'move',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 200,
+                    top: 100,
                     left: 20,
                     child: Text(
-                      'SignUp',
+                      'SignIn',
                       style: TextStyle(
                         fontSize: 50,
                         color: Colors.black,
@@ -59,10 +48,10 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   Positioned(
-                    top: 270,
+                    top: 170,
                     left: 20,
                     child: Text(
-                      'Please SignUp to continue.',
+                      'Please signin to continue.',
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -72,10 +61,10 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   Positioned(
-                    top: 310,
+                    top: 210,
                     left: 10,
                     child: Container(
-                      height: 290,
+                      height: 370,
                       width: 370,
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(),
@@ -90,78 +79,69 @@ class _SignUpState extends State<SignUp> {
                                 RequiredValidator(errorText: 'Required'),
                                 EmailValidator(errorText: 'Not a valid Email')
                               ]),
+                              autocorrect: false,
+                              autofocus: false,
                               decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.email),
-                                  hintText: "Email"),
+                                  hintText: 'Email'),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 25.0),
                             child: TextFormField(
-                              controller: _passwordController,
-                              onSaved: (input) => _password = input,
-                              validator: MultiValidator([
-                                RequiredValidator(errorText: 'Required'),
-                                MinLengthValidator(6,
-                                    errorText:
-                                        'Should be atleast 6 charecters'),
-                                MaxLengthValidator(15,
-                                    errorText: 'Should be 15 charecters Max')
-                              ]),
-                              obscureText: _showpassword,
+                                controller: _passwordController,
+                                onSaved: (input) => _password = input,
+                                validator: MultiValidator([
+                                  RequiredValidator(errorText: 'Required'),
+                                  MinLengthValidator(6,
+                                      errorText:
+                                          'Should be atleast 6 charecters'),
+                                  MaxLengthValidator(15,
+                                      errorText: 'Should be 15 charecters Max')
+                                ]),
+                                obscureText: true,
+                                autocorrect: false,
+                                autofocus: false,
+                                decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.lock),
+                                    hintText: 'Password')),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 25.0),
+                            child: TextFormField(
+                              controller: _confPasswordController,
+                              onSaved: (input) => _confPasswod = input,
+                              validator: (String value) {
+                                if (value != _passwordController.value.text) {
+                                  return 'Password do not match';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              obscureText: true,
+                              autocorrect: false,
+                              autofocus: false,
                               decoration: InputDecoration(
-                                hintText: "Password",
-                                prefixIcon: Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    Icons.remove_red_eye,
-                                    color: this._showpassword
-                                        ? Colors.indigo
-                                        : Colors.orange,
-                                  ),
-                                  onPressed: () {
-                                    setState(() => this._showpassword =
-                                        !this._showpassword);
-                                  },
-                                ),
-                              ),
+                                  prefixIcon: Icon(Icons.lock),
+                                  hintText: 'Confirm Password',
+                                  focusColor: Colors.red),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment(1, 6),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 30),
                             child: MaterialButton(
                               onPressed: () {},
-                              minWidth: 180,
+                              minWidth: 220,
+                              splashColor: Colors.red[300],
+                              color: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              padding: EdgeInsets.symmetric(vertical: 10.0),
+                                      BorderRadius.all(Radius.circular(10.0))),
+                              padding: EdgeInsets.symmetric(vertical: 15.0),
                               child: Text(
-                                'forgot password?',
+                                'Signup',
                                 style: TextStyle(
                                     fontSize: 20, color: Colors.black),
-                              ),
-                            ),
-                          ),
-                          MaterialButton(
-                            onPressed: () {
-                              context.read<AuthenticationService>().signUp(
-                                    email: _emailController.text.trim(),
-                                    password: _passwordController.text.trim(),
-                                  );
-                            },
-                            minWidth: 220,
-                            splashColor: Colors.red[500],
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0))),
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
-                            child: Text(
-                              'Signup',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
                               ),
                             ),
                           )
@@ -169,17 +149,35 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
+                  /*  Positioned(
+                      top: 570,
+                      left: 180,
+                      child: Text(
+                        'OR',
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      )), */
                   Positioned(
-                    top: 660,
-                    left: 95,
+                      top: 600,
+                      left: 80,
+                      child: GoogleSignInButton(
+                        borderRadius: 10,
+                        onPressed: () {},
+                        splashColor: Colors.red[300],
+                        text: 'SignUp with Google',
+                      )),
+                  Positioned(
+                    top: 700,
+                    left: 80,
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Login()));
                       },
-                      child: Text(
-                        'Already have an account',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      child: Container(
+                        child: Text(
+                          'Already have an account?',
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
                       ),
                     ),
                   ),
