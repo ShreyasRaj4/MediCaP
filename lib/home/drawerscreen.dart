@@ -10,7 +10,7 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
-  bool isReg=Booleans.isRegistered;
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,7 +88,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               TextButton(
                 onPressed: () {
                   print('setting');
-                  print(isReg);
+                 
                 },
                 child: Text(
                   'Settings',
