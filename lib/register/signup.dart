@@ -1,5 +1,4 @@
 import 'package:MediCaP/authentication_service.dart';
-import 'package:MediCaP/models.dart';
 import 'package:MediCaP/registration.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
@@ -130,7 +129,12 @@ class _SignUpState extends State<SignUp> {
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 30),
                             child: MaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.read<AuthenticationService>().signUp(
+                                      email: _emailController.text.trim(),
+                                      password: _passwordController.text.trim(),
+                                    );
+                              },
                               minWidth: 220,
                               splashColor: Colors.red[300],
                               color: Colors.white,

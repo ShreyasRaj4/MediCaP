@@ -21,21 +21,22 @@ class _HomeScreenState extends State<HomeScreen> {
       duration: Duration(seconds: 1),
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
         ..scale(scaleFactor)
-        ..rotateY(isDrawerOpen ? -0.5 : 0),
+        ..rotateY(isDrawerOpen ? -0.1 : 0),
       decoration: BoxDecoration(
-          color: Colors.blue[100],
+          color: Colors.white,
           borderRadius: BorderRadius.circular(isDrawerOpen ? 40 : 0.0)),
       child: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 30),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   isDrawerOpen
                       ? IconButton(
+                          iconSize: 40,
+                          color: Colors.cyan,
                           icon: Icon(Icons.arrow_back_ios),
                           onPressed: () {
                             setState(() {
@@ -47,23 +48,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         )
                       : IconButton(
+                          iconSize: 40,
+                          color: Colors.cyan,
                           icon: Icon(Icons.menu),
                           onPressed: () {
                             setState(() {
-                              xOffset = 230;
-                              yOffset = 150;
-                              scaleFactor = 0.6;
+                              xOffset = 190;
+                              yOffset = 80;
+                              scaleFactor = 0.8;
                               isDrawerOpen = true;
                             });
                           }),
                   Text(
                     'MEDICAP',
                     style: GoogleFonts.mavenPro(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red),
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
                   ),
                   CircleAvatar(
+                    minRadius: 30,
                     backgroundImage: AssetImage(
                         'images/WhatsApp Image 2020-10-28 at 10.21.31 AM.jpeg'),
                   )
@@ -74,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Need a Plasma donar?',
+                Text('   Need a Plasma donar?',
                     style: GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
                 TextButton(
                   onPressed: null,
@@ -88,7 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  UserProfile( 'images/userphotos/profile1.jpg', 'O+', "Shreyas"),
+                  UserProfile(
+                      'images/userphotos/profile1.jpg', 'O+', "Shreyas"),
                   UserProfile(
                       'images/userphotos/profile2.jpg', 'AB+', "Prasad"),
                   UserProfile('images/userphotos/profile3.jpg', 'O-', "Shurti"),
@@ -99,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Need a Blood donar?',
+                Text('  Need a Blood donar?',
                     style: GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
                 TextButton(
                   onPressed: null,
@@ -125,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Nearby Blood Banks',
+                  '   Nearby Blood Banks',
                   style: GoogleFonts.lato(fontSize: 18, color: Colors.blue),
                 ),
                 TextButton(

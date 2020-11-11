@@ -1,6 +1,4 @@
-import 'package:MediCaP/models.dart';
 import 'package:MediCaP/register/login.dart';
-import 'package:MediCaP/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -46,7 +44,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
        
     if (firebaseUser != null) {
-      return B1.isRegistered? Home() : Register();
+      return Home();
     }
     return Login();
   }

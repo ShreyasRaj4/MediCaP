@@ -1,4 +1,3 @@
-import 'package:MediCaP/models.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -10,14 +9,13 @@ class DrawerScreen extends StatefulWidget {
 }
 
 class _DrawerScreenState extends State<DrawerScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red[300],
+      color: Colors.deepPurple,
       padding: EdgeInsets.only(top: 50, bottom: 70, left: 10),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        /* mainAxisAlignment: MainAxisAlignment.spaceBetween, */
         children: [
           Row(
             children: [
@@ -43,19 +41,20 @@ class _DrawerScreenState extends State<DrawerScreen> {
               )
             ],
           ),
+          SizedBox(height: 120),
           Column(
             children: drawerItems
                 .map((element) => Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                         style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.cyan),
                           visualDensity:
                               VisualDensity(vertical: 4, horizontal: 0),
                         ),
                         onPressed: () {
-                          print('sssssssssssssssssss');
-                          bool isReg=true;
-                          print(isReg);
+                          print('open');
                         },
                         child: Row(
                           children: [
@@ -78,6 +77,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ))
                 .toList(),
           ),
+          SizedBox(height: 95),
           Row(
             children: [
               SizedBox(width: 10),
@@ -88,7 +88,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
               TextButton(
                 onPressed: () {
                   print('setting');
-                 
                 },
                 child: Text(
                   'Settings',
@@ -101,7 +100,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 height: 20,
                 color: Colors.white,
               ),
-              SizedBox(width: 10),
               TextButton(
                 onPressed: () {
                   context.read<AuthenticationService>().signOut();
