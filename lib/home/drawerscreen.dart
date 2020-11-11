@@ -1,14 +1,9 @@
+import 'package:MediCaP/GetXHelper/FirebaseController.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import '../authentication_service.dart';
+import 'package:get/get.dart';
 
-class DrawerScreen extends StatefulWidget {
-  @override
-  _DrawerScreenState createState() => _DrawerScreenState();
-}
-
-class _DrawerScreenState extends State<DrawerScreen> {
+class DrawerScreen extends GetWidget<FirebaseController> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,9 +95,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 height: 20,
                 color: Colors.white,
               ),
-              TextButton(
+              RaisedButton(
                 onPressed: () {
-                  context.read<AuthenticationService>().signOut();
+                 controller.signOut();
                 },
                 child: Text(
                   'Log out',

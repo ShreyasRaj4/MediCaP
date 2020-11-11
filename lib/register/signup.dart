@@ -1,19 +1,16 @@
+import 'package:MediCaP/GetXHelper/FirebaseController.dart';
 import 'package:MediCaP/authentication_service.dart';
 import 'package:MediCaP/registration.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login.dart';
 
-class SignUp extends StatefulWidget {
-  @override
-  _SignUpState createState() => _SignUpState();
-}
-
-class _SignUpState extends State<SignUp> {
+class SignUp extends GetWidget<FirebaseController> {
   bool _showpassword = true;
 
   final _formkey = GlobalKey<FormState>();
@@ -126,22 +123,10 @@ class _SignUpState extends State<SignUp> {
                                   focusColor: Colors.red),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 30),
-                            child: MaterialButton(
-                              onPressed: () {
-                                context.read<AuthenticationService>().signUp(
-                                      email: _emailController.text.trim(),
-                                      password: _passwordController.text.trim(),
-                                    );
-                              },
-                              minWidth: 220,
-                              splashColor: Colors.red[300],
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
-                              padding: EdgeInsets.symmetric(vertical: 15.0),
+                          GestureDetector(
+                            onTap: RegisterUser,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 30),
                               child: Text(
                                 'Signup',
                                 style: TextStyle(
@@ -153,13 +138,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                     ),
                   ),
-                  /*  Positioned(
-                      top: 570,
-                      left: 180,
-                      child: Text(
-                        'OR',
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      )), */
                   Positioned(
                       top: 600,
                       left: 80,
@@ -192,5 +170,9 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  void RegisterUser() {
+    controller.createUser(_emailController.text, _passwordController.text);
   }
 }

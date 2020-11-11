@@ -1,10 +1,14 @@
-import 'package:MediCaP/register/login.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:get/get.dart';
+import 'GetXHelper/FirebaseController.dart';
+import 'package:MediCaP/InstanceBinding.dart';
+
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
-import 'package:MediCaP/authentication_service.dart';
+
+import 'package:MediCaP/register/login.dart';
 import 'home/home.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -14,28 +18,19 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<AuthenticationService>(
-          create: (_) => AuthenticationService(FirebaseAuth.instance),
-        ),
-        StreamProvider(
-            create: (context) =>
-                context.read<AuthenticationService>().authStateChanges),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'MediCap',
-        theme: ThemeData(
-          primarySwatch: Colors.red,
-        ),
-        home: AuthenticationWrapper(),
+    return GetMaterialApp(
+      initialBinding: InstanceBinding(),
+      debugShowCheckedModeBanner: false,
+      title: 'MediCap',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
       ),
+      home: IsSignedIn(),
     );
   }
 }
 
-class AuthenticationWrapper extends StatelessWidget {
+/* class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({
     Key key,
   }) : super(key: key);
@@ -47,5 +42,13 @@ class AuthenticationWrapper extends StatelessWidget {
       return Home();
     }
     return Login();
+  }
+} */
+class IsSignedIn extends GetWidget<FirebaseController> {
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      return Get.find<FirebaseController>().user != null ? Home() : Login();
+    });
   }
 }

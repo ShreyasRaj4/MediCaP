@@ -37,6 +37,8 @@ dependencies:
   flare_flutter: ^2.0.6
   flutter_auth_buttons: ^0.10.0
   font_awesome_flutter: ^8.10.0
+  get: ^3.16.1
+  cloud_firestore: ^0.14.3
 
 dev_dependencies:
   flutter_test:

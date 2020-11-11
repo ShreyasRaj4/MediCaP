@@ -1,18 +1,16 @@
-import 'package:MediCaP/authentication_service.dart';
-import 'package:MediCaP/register/signup.dart';
-import 'package:flare_flutter/flare_actor.dart';
-
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:MediCaP/GetXHelper/FirebaseController.dart';
+
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-class Login extends StatefulWidget {
+import 'package:MediCaP/register/signup.dart';
+
+class Login extends GetWidget<FirebaseController> {
   @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
   bool _showpassword = true;
 
   final TextEditingController _emailController = TextEditingController();
@@ -121,8 +119,8 @@ class _LoginState extends State<Login> {
                                         : Colors.orange,
                                   ),
                                   onPressed: () {
-                                    setState(() => this._showpassword =
-                                        !this._showpassword);
+                                    /* setState(() => this._showpassword =
+                                        !this._showpassword); */
                                   },
                                 ),
                               ),
@@ -144,27 +142,14 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
-                          MaterialButton(
-                            onPressed: () {
-                              context.read<AuthenticationService>().signIn(
-                                    email: _emailController.text.trim(),
-                                    password:
-                                        _passwordController.text.trim(),
-                                  );
+                          GestureDetector(
+                            onTap: () {
+                              print('Login clicked Event');
+                              _login();
                             },
-                            minWidth: 220,
-                            splashColor: Colors.red[500],
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(20.0))),
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
                             child: Text(
-                              'login',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                              ),
+                              'Login',
+                              style: TextStyle(fontSize: 40),
                             ),
                           )
                         ],
@@ -193,5 +178,8 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-}
 
+  void _login() {
+    controller.login(_emailController.text, _passwordController.text);
+  }
+}
