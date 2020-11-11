@@ -95,7 +95,7 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                 height: 20,
                 color: Colors.white,
               ),
-              RaisedButton(
+              TextButton(
                 onPressed: () {
                  controller.signOut();
                 },

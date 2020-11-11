@@ -18,7 +18,7 @@ class Login extends GetWidget<FirebaseController> {
 
   final _formkey = GlobalKey<FormState>();
 
-  String _email, _password;
+  String  _password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +84,7 @@ class Login extends GetWidget<FirebaseController> {
                             padding: EdgeInsets.only(top: 15.0),
                             child: TextFormField(
                               controller: _emailController,
-                              onSaved: (input) => _email = input,
+                              onSaved: (input) => _emailController.text = input,
                               validator: MultiValidator([
                                 RequiredValidator(errorText: 'Required'),
                                 EmailValidator(errorText: 'Not a valid Email')
@@ -98,7 +98,7 @@ class Login extends GetWidget<FirebaseController> {
                             padding: EdgeInsets.only(top: 25.0),
                             child: TextFormField(
                               controller: _passwordController,
-                              onSaved: (input) => _password = input,
+                              onSaved: (input) => _passwordController.text = input,
                               validator: MultiValidator([
                                 RequiredValidator(errorText: 'Required'),
                                 MinLengthValidator(6,

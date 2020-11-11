@@ -1,13 +1,11 @@
 import 'package:MediCaP/GetXHelper/FirebaseController.dart';
-import 'package:MediCaP/authentication_service.dart';
 import 'package:MediCaP/registration.dart';
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+
 import 'login.dart';
 
 class SignUp extends GetWidget<FirebaseController> {
