@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MediCap',
       theme: ThemeData(
-        primarySwatch: Colors.blue[300],
+        primarySwatch: Colors.blue,
         accentColor: Colors.purple,
       ),
       home: IsSignedIn(),
