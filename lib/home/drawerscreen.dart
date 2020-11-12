@@ -61,11 +61,14 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                             SizedBox(
                               width: 10,
                             ),
-                            Text(element['title'],
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20))
+                            Text(
+                              element['title'],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -97,7 +100,7 @@ class DrawerScreen extends GetWidget<FirebaseController> {
               ),
               TextButton(
                 onPressed: () {
-                 controller.signOut();
+                  controller.signOut();
                 },
                 child: Text(
                   'Log out',

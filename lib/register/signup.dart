@@ -1,5 +1,4 @@
 import 'package:MediCaP/GetXHelper/FirebaseController.dart';
-import 'package:MediCaP/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:form_field_validator/form_field_validator.dart';
