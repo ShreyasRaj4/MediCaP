@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'login.dart';
 
+// ignore: must_be_immutable
 class SignUp extends GetWidget<FirebaseController> {
   bool _showpassword = true;
 
@@ -14,7 +15,6 @@ class SignUp extends GetWidget<FirebaseController> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confPasswordController = TextEditingController();
-  String _email, _password, _confPasswod;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +67,6 @@ class SignUp extends GetWidget<FirebaseController> {
                             padding: EdgeInsets.only(top: 15.0),
                             child: TextFormField(
                               controller: _emailController,
-                              onSaved: (input) => _email = input,
                               validator: MultiValidator([
                                 RequiredValidator(errorText: 'Required'),
                                 EmailValidator(errorText: 'Not a valid Email')
@@ -83,7 +82,6 @@ class SignUp extends GetWidget<FirebaseController> {
                             padding: EdgeInsets.only(top: 25.0),
                             child: TextFormField(
                                 controller: _passwordController,
-                                onSaved: (input) => _password = input,
                                 validator: MultiValidator([
                                   RequiredValidator(errorText: 'Required'),
                                   MinLengthValidator(6,
@@ -103,7 +101,6 @@ class SignUp extends GetWidget<FirebaseController> {
                             padding: EdgeInsets.only(top: 25.0),
                             child: TextFormField(
                               controller: _confPasswordController,
-                              onSaved: (input) => _confPasswod = input,
                               validator: (String value) {
                                 if (value != _passwordController.value.text) {
                                   return 'Password do not match';
@@ -121,7 +118,7 @@ class SignUp extends GetWidget<FirebaseController> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: RegisterUser,
+                            onTap: registerUser,
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 30),
                               child: Text(
@@ -169,7 +166,7 @@ class SignUp extends GetWidget<FirebaseController> {
     );
   }
 
-  void RegisterUser() {
+  void registerUser() {
     controller.createUser(_emailController.text, _passwordController.text);
   }
 }

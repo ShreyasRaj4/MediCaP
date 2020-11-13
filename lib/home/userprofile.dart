@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class UserProfile extends StatelessWidget {
   String filename, name, bloodgroup;
   UserProfile(String filename, String name, String bloodgroup) {

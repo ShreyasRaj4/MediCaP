@@ -6,12 +6,10 @@ class Donate extends StatefulWidget {
 }
 
 class _DonateState extends State<Donate> {
-  List<bool> _selections = List.generate(2, (index) => false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_left_outlined),
         title: Text(
           'Donate Registration Form',
         ),

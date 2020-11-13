@@ -9,8 +9,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:MediCaP/register/signup.dart';
 
+// ignore: must_be_immutable
 class Login extends GetWidget<FirebaseController> {
-  @override
   bool _showpassword = true;
 
   final TextEditingController _emailController = TextEditingController();
@@ -18,8 +18,6 @@ class Login extends GetWidget<FirebaseController> {
 
   final _formkey = GlobalKey<FormState>();
 
-  String  _password;
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[200],
@@ -84,7 +82,6 @@ class Login extends GetWidget<FirebaseController> {
                             padding: EdgeInsets.only(top: 15.0),
                             child: TextFormField(
                               controller: _emailController,
-                              onSaved: (input) => _emailController.text = input,
                               validator: MultiValidator([
                                 RequiredValidator(errorText: 'Required'),
                                 EmailValidator(errorText: 'Not a valid Email')
@@ -98,7 +95,6 @@ class Login extends GetWidget<FirebaseController> {
                             padding: EdgeInsets.only(top: 25.0),
                             child: TextFormField(
                               controller: _passwordController,
-                              onSaved: (input) => _passwordController.text = input,
                               validator: MultiValidator([
                                 RequiredValidator(errorText: 'Required'),
                                 MinLengthValidator(6,

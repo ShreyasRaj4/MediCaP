@@ -2,7 +2,6 @@ import 'package:MediCaP/home/home.dart';
 import 'package:MediCaP/register/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,6 +13,9 @@ class FirebaseController extends GetxController {
   void onInit() {
     _firebaseUser.bindStream(_auth.authStateChanges());
   }
+
+
+  
 
   void createUser(String email, String password) async {
     await _auth

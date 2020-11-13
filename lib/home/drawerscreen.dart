@@ -1,4 +1,5 @@
 import 'package:MediCaP/GetXHelper/FirebaseController.dart';
+import 'package:MediCaP/home/donate.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -49,7 +50,21 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                               VisualDensity(vertical: 4, horizontal: 0),
                         ),
                         onPressed: () {
-                          print('open');
+                         switch (element['title']) {
+                           case 'Donate':
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Donate()));
+                             break;
+                            case 'Rate Us':
+                              print('Rate Us');
+                            break;
+                            case 'Share':
+                              print('Share');
+                            break;
+                            case 'Info':
+                              print('Info');
+                            break;
+                           default:
+                         }
                         },
                         child: Row(
                           children: [
@@ -116,17 +131,10 @@ class DrawerScreen extends GetWidget<FirebaseController> {
   }
 }
 
-/* List<Map> drawerItems = [
-  {'icon': 'Icons.menu', 'title': 'shreyas'},
-  {'icon': 'Icons.menu', 'title': 'shreyas'},
-  {'icon': 'Icons.menu', 'title': 'shreyas'},
-  {'icon': 'Icons.menu', 'title': 'shreyas'},
-]; */
 List<Map> drawerItems = [
   {'icon': FontAwesomeIcons.heart, 'title': 'Donate'},
   {'icon': Icons.star_rate, 'title': 'Rate Us'},
   {'icon': FontAwesomeIcons.share, 'title': 'Share'},
   /* {'icon': FontAwesomeIcons.home, 'title': 'Home'}, */
-  /* {'icon': Icons.favorite, 'title': 'Favorites'}, */
   {'icon': FontAwesomeIcons.info, 'title': 'Info'},
 ];
