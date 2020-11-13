@@ -31,6 +31,7 @@ dependencies:
   firebase_core: ^0.5.0+1
   firebase_auth: ^0.18.1+2
   cloud_firestore: ^0.14.3
+  firebase_storage: ^5.0.1
 
   get: ^3.16.1
   provider: ^4.3.2+2
@@ -41,10 +42,21 @@ dependencies:
   flutter_auth_buttons: ^0.10.0
   font_awesome_flutter: ^8.10.0
   shimmer: ^1.1.1
-  animated_splash_screen: ^1.0.1
+  splashscreen: ^1.3.3
   flutter_spinkit: ^4.1.2
+  flutter_launcher_icons: ^0.8.1
+  image_picker: ^0.6.7+14
+  flutter_screenutil: ^1.0.2
+  line_awesome_flutter: ^1.0.1
+  
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/medicapicon.png"
 
 dev_dependencies:
+  
   flutter_test:
     sdk: flutter
 # For information on the generic Dart part of this file, see the
@@ -66,7 +78,8 @@ flutter:
     - images/CBvirus
     - images/chart-of-blood-types-in-drops-medical-and-vector-14313368.jpg
     - images/businessman-profile-cartoon_18591-58479.jpg
-    - images/WhatsApp Image 2020-10-28 at 10.21.31 AM.jpeg
+    - images/medicapicon.png
+    - images/splash.gif
     - images/bloodbank1.jpg
     - images/bloodbank2.jpg
     - images/bloodbank3.jpg

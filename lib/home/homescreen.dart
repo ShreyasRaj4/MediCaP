@@ -1,5 +1,6 @@
 import 'package:MediCaP/home/bloodbanks.dart';
 import 'package:MediCaP/home/userprofile.dart';
+import 'package:MediCaP/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -67,10 +68,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: Colors.blue,
                     ),
                   ),
-                  CircleAvatar(
-                    minRadius: 30,
-                    backgroundImage: AssetImage(
-                        'images/WhatsApp Image 2020-10-28 at 10.21.31 AM.jpeg'),
+                  GestureDetector(
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfilePage())),
+                    child: CircleAvatar(
+                      minRadius: 30,
+                      backgroundImage: AssetImage(
+                          'images/businessman-profile-cartoon_18591-58479.jpg'),
+                    ),
                   )
                 ],
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:splashscreen/splashscreen.dart';
 import 'GetXHelper/FirebaseController.dart';
 import 'package:MediCaP/InstanceBinding.dart';
 
@@ -26,25 +27,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         accentColor: Colors.purple,
       ),
-      home: IsSignedIn(),
+      home: SplashScreen(
+        seconds: 5,
+        routeName: "/",
+        backgroundColor: Colors.white,
+        image: Image.asset('images/splash.gif'),
+        photoSize: 200,
+        loaderColor: Colors.white,
+        navigateAfterSeconds: IsSignedIn(),
+      ),
     );
   }
 }
 
-/* class AuthenticationWrapper extends StatelessWidget {
-  const AuthenticationWrapper({
-    Key key,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User>();
-       
-    if (firebaseUser != null) {
-      return Home();
-    }
-    return Login();
-  }
-} */
 class IsSignedIn extends GetWidget<FirebaseController> {
   @override
   Widget build(BuildContext context) {

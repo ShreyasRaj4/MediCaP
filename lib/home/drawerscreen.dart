@@ -1,5 +1,5 @@
 import 'package:MediCaP/GetXHelper/FirebaseController.dart';
-import 'package:MediCaP/home/donate.dart';
+import 'package:MediCaP/home/donation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -9,15 +9,17 @@ class DrawerScreen extends GetWidget<FirebaseController> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.deepPurple,
-      padding: EdgeInsets.only(top: 50, bottom: 70, left: 10),
+      padding: EdgeInsets.only(top: 50, bottom: 70, left: 0),
       child: Column(
         /* mainAxisAlignment: MainAxisAlignment.spaceBetween, */
         children: [
           Row(
             children: [
+              SizedBox(width: 20),
               CircleAvatar(
+                minRadius: 30,
                 backgroundImage: AssetImage(
-                    'images/WhatsApp Image 2020-10-28 at 10.21.31 AM.jpeg'),
+                    'images/businessman-profile-cartoon_18591-58479.jpg'),
               ),
               SizedBox(width: 10),
               Column(
@@ -37,7 +39,7 @@ class DrawerScreen extends GetWidget<FirebaseController> {
               )
             ],
           ),
-          SizedBox(height: 120),
+          SizedBox(height: 30),
           Column(
             children: drawerItems
                 .map((element) => Padding(
@@ -50,21 +52,33 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                               VisualDensity(vertical: 4, horizontal: 0),
                         ),
                         onPressed: () {
-                         switch (element['title']) {
-                           case 'Donate':
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Donate()));
-                             break;
+                          switch (element['title']) {
+                            case 'Donate Blood':
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DonationBlood()));
+                              break;
+                            case 'Donate Plasma':
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DonationPlasma()));
+                              break;
                             case 'Rate Us':
                               print('Rate Us');
-                            break;
+                              break;
                             case 'Share':
                               print('Share');
-                            break;
+                              break;
                             case 'Info':
                               print('Info');
-                            break;
-                           default:
-                         }
+                              break;
+                            case 'Logout':
+                              controller.signOut();
+                              break;
+                            default:
+                          }
                         },
                         child: Row(
                           children: [
@@ -90,41 +104,6 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                     ))
                 .toList(),
           ),
-          SizedBox(height: 95),
-          Row(
-            children: [
-              SizedBox(width: 10),
-              Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-              TextButton(
-                onPressed: () {
-                  print('setting');
-                },
-                child: Text(
-                  'Settings',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                width: 2,
-                height: 20,
-                color: Colors.white,
-              ),
-              TextButton(
-                onPressed: () {
-                  controller.signOut();
-                },
-                child: Text(
-                  'Log out',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-          )
         ],
       ),
     );
@@ -132,9 +111,11 @@ class DrawerScreen extends GetWidget<FirebaseController> {
 }
 
 List<Map> drawerItems = [
-  {'icon': FontAwesomeIcons.heart, 'title': 'Donate'},
+  {'icon': FontAwesomeIcons.heart, 'title': 'Donate Blood'},
+  {'icon': FontAwesomeIcons.heart, 'title': 'Donate Plasma'},
   {'icon': Icons.star_rate, 'title': 'Rate Us'},
   {'icon': FontAwesomeIcons.share, 'title': 'Share'},
   /* {'icon': FontAwesomeIcons.home, 'title': 'Home'}, */
   {'icon': FontAwesomeIcons.info, 'title': 'Info'},
+  {'icon': Icons.logout, 'title': 'Logout'},
 ];
