@@ -1,10 +1,19 @@
 import 'package:MediCaP/GetXHelper/FirebaseController.dart';
 import 'package:MediCaP/home/donation.dart';
+import 'package:MediCaP/loading.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import '../info.dart';
 
 class DrawerScreen extends GetWidget<FirebaseController> {
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  User user = FirebaseAuth.instance.currentUser;
+  // String name= users.doc(user.uid).
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,11 +34,25 @@ class DrawerScreen extends GetWidget<FirebaseController> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Shreyas Raj',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
+                  FutureBuilder(
+                      future: users.doc(user.uid).get(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<DocumentSnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('error');
+                        }
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          Map data = snapshot.data.data();
+                          return Text(
+                            '${data['name']}',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          );
+                        }
+                        return Text('loading');
+                      }),
                   Text(
                     'Active Status',
                     style: TextStyle(
@@ -66,13 +89,53 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                                       builder: (context) => DonationPlasma()));
                               break;
                             case 'Rate Us':
-                              print('Rate Us');
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text('Rate Us'),
+                                      content: Text('Give a star to our Repo'),
+                                      actions: [
+                                        FlatButton(
+                                          child: Text('Sure'),
+                                          onPressed: () => Navigator.pop(context),
+                                        ),
+                                        FlatButton(
+                                          child: Text('Sorry'),
+                                          onPressed: () => Navigator.pop(context),
+                                        ),
+                                      ],
+                                    );
+                                  });
                               break;
-                            case 'Share':
-                              print('Share');
+                            case 'Invite':
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text('Invite'),
+                                      content: Text('Invite Friends'),
+                                      actions: [
+                                        FlatButton(
+                                          child: Text('Sure'),
+                                          onPressed: () {
+                                            print('onpressed');
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                        FlatButton(
+                                          child: Text('Sorry'),
+                                          onPressed: () => Navigator.pop(context),
+                                        ),
+                                      ],
+                                    );
+                                  });
                               break;
                             case 'Info':
-                              print('Info');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Info()));
                               break;
                             case 'Logout':
                               controller.signOut();
@@ -114,8 +177,7 @@ List<Map> drawerItems = [
   {'icon': FontAwesomeIcons.heart, 'title': 'Donate Blood'},
   {'icon': FontAwesomeIcons.heart, 'title': 'Donate Plasma'},
   {'icon': Icons.star_rate, 'title': 'Rate Us'},
-  {'icon': FontAwesomeIcons.share, 'title': 'Share'},
-  /* {'icon': FontAwesomeIcons.home, 'title': 'Home'}, */
+  {'icon': FontAwesomeIcons.share, 'title': 'Invite'},
   {'icon': FontAwesomeIcons.info, 'title': 'Info'},
   {'icon': Icons.logout, 'title': 'Logout'},
 ];

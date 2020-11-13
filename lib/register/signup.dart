@@ -15,6 +15,7 @@ class SignUp extends GetWidget<FirebaseController> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confPasswordController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +64,17 @@ class SignUp extends GetWidget<FirebaseController> {
                       decoration: BoxDecoration(),
                       child: Column(
                         children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: 15.0),
+                            child: TextFormField(
+                              controller: _userNameController,
+                              autocorrect: false,
+                              autofocus: false,
+                              decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.email),
+                                  hintText: 'UserName'),
+                            ),
+                          ),
                           Padding(
                             padding: EdgeInsets.only(top: 15.0),
                             child: TextFormField(
@@ -117,30 +129,27 @@ class SignUp extends GetWidget<FirebaseController> {
                                   focusColor: Colors.red),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: registerUser,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 30),
-                              child: Text(
-                                'Signup',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.black),
-                              ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          MaterialButton(
+                            onPressed: registerUser,
+                            color: Colors.deepPurple,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0))),
+                            height: 40,
+                            minWidth: 150,
+                            child: Text(
+                              'Signup',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           )
                         ],
                       ),
                     ),
                   ),
-                  Positioned(
-                      top: 600,
-                      left: 80,
-                      child: GoogleSignInButton(
-                        borderRadius: 10,
-                        onPressed: () {},
-                        splashColor: Colors.red[300],
-                        text: 'SignUp with Google',
-                      )),
                   Positioned(
                     top: 700,
                     left: 80,
@@ -167,6 +176,7 @@ class SignUp extends GetWidget<FirebaseController> {
   }
 
   void registerUser() {
-    controller.createUser(_emailController.text, _passwordController.text);
+    controller.createUser(_userNameController.text, _emailController.text,
+        _passwordController.text);
   }
 }

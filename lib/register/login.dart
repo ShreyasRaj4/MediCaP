@@ -122,30 +122,24 @@ class Login extends GetWidget<FirebaseController> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment(1, 6),
-                            child: MaterialButton(
-                              onPressed: () {},
-                              minWidth: 180,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              padding: EdgeInsets.symmetric(vertical: 10.0),
-                              child: Text(
-                                'forgot password?',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.black),
-                              ),
-                            ),
+                          SizedBox(
+                            height: 40,
                           ),
-                          GestureDetector(
-                            onTap: () {
+                          MaterialButton(
+                            onPressed: () {
                               print('Login clicked Event');
                               _login();
                             },
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0))),
+                            color: Colors.deepPurple,
+                            height: 40,
+                            minWidth: 150,
                             child: Text(
                               'Login',
-                              style: TextStyle(fontSize: 40),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           )
                         ],

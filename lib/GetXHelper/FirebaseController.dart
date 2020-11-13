@@ -1,3 +1,4 @@
+import 'package:MediCaP/database/databaseManager.dart';
 import 'package:MediCaP/home/home.dart';
 import 'package:MediCaP/register/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,17 +15,17 @@ class FirebaseController extends GetxController {
     _firebaseUser.bindStream(_auth.authStateChanges());
   }
 
-
-  
-
-  void createUser(String email, String password) async {
+  void createUser(String name, String email, String password) async {
     await _auth
         .createUserWithEmailAndPassword(email: email, password: password)
-        .then((value) => Get.offAll(Home()))
-        .catchError(
-          (onError) =>
-              Get.snackbar('Error while creating account', onError.message),
-        );
+        .then((value) async {
+      User user = value.user;
+      await DatabaseManager().createUserData(name, email, user.uid);
+      Get.offAll(Home());
+    }).catchError(
+      (onError) =>
+          Get.snackbar('Error while creating account', onError.message),
+    );
   }
 
   void login(String email, String password) async {
@@ -40,3 +41,14 @@ class FirebaseController extends GetxController {
     await _auth.signOut().then((value) => Get.offAll(Login()));
   }
 }
+
+// Future<String> signUp(String name,String email,String password) async {
+//     try{
+//       UserCredential result = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+//       User user =result.user;
+//       await DatabaseManager().createUserData(name, 'Male', 18, user.uid);
+//       return "Signed Up";
+//     } on FirebaseAuthException catch(e){
+//       return e.message;
+//     }
+//   }

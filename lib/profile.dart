@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -14,6 +16,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  User user = FirebaseAuth.instance.currentUser;
   File _image;
   final picker = ImagePicker();
   @override
@@ -38,19 +43,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
 
-    var profileInfo = Expanded(
+    Widget profileInfo = Expanded(
       child: Column(
         children: <Widget>[
           Container(
             height: kSpacingUnit.w * 10,
-            width: kSpacingUnit.w * 12.5,
+            width: kSpacingUnit.w * 10.5,
             margin: EdgeInsets.only(top: kSpacingUnit.w * 6),
             child: Stack(
               children: <Widget>[
                 _image == null
                     ? Image.asset(
                         'images/businessman-profile-cartoon_18591-58479.jpg',
-                        fit: BoxFit.fill,
+                        fit: BoxFit.fitWidth,
                       )
                     : Image.file(
                         _image,
@@ -60,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   alignment: Alignment.bottomRight,
                   child: Container(
                     height: kSpacingUnit.w * 3.5,
-                    width: kSpacingUnit.w * 5.5,
+                    width: kSpacingUnit.w * 6.5,
                     decoration: BoxDecoration(
                       color: Theme.of(context).accentColor,
                       shape: BoxShape.circle,
@@ -92,15 +97,45 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           SizedBox(height: kSpacingUnit.w * 2),
-          Text(
-            'Nicolas Adams',
-            style: kTitleTextStyle,
-          ),
+          FutureBuilder(
+              future: users.doc(user.uid).get(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('error');
+                }
+                if (snapshot.connectionState == ConnectionState.done) {
+                  Map data = snapshot.data.data();
+                  return Text(
+                    '${data['name']}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  );
+                }
+                return Text('loading');
+              }),
           SizedBox(height: kSpacingUnit.w * 0.5),
-          Text(
-            'nicolasadams@gmail.com',
-            style: kCaptionTextStyle,
-          ),
+          FutureBuilder(
+              future: users.doc(user.uid).get(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('error');
+                }
+                if (snapshot.connectionState == ConnectionState.done) {
+                  Map data = snapshot.data.data();
+                  return Text(
+                    '${data['email']}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  );
+                }
+                return Text('loading');
+              }),
           MaterialButton(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
@@ -114,7 +149,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
 
-    var header = Row(
+    Widget header = Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -136,6 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Builder(
       builder: (context) {
         return Scaffold(
+          backgroundColor: Colors.pink[50],
           body: Column(
             children: <Widget>[
               SizedBox(height: kSpacingUnit.w * 5),
@@ -160,10 +196,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Column(
                             children: <Widget>[
                               SizedBox(
-                                height: 15,
+                                height: 20,
                               ),
                               Text(
-                                'Number of donations:',
+                                'Corona Cases India:',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),Text(
+                                '8.73M',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               )
@@ -191,34 +231,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                 'Number of donations:',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
-                              )
+                              ),
+                              Text(
+                                '0',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    // SizedBox(
-                    //   height: 20,
-                    // ),
-                    // ProfileListItem(
-                    //   icon: LineAwesomeIcons.question_circle,
-                    //   text: 'Help & Support',
-                    // ),
-                    // ProfileListItem(
-                    //   icon: LineAwesomeIcons.user_plus,
-                    //   text: 'Invite a Friend',
-                    // ),
-                    // RaisedButton(
-                    //   shape: RoundedRectangleBorder(
-                    //       borderRadius:
-                    //           BorderRadius.all(Radius.circular(20.0))),
-                    //   onPressed: () {},
-                    //   color: Colors.blue[300],
-                    //   child: Text(
-                    //     'logout',
-                    //     style: TextStyle(color: Colors.white),
-                    //   ),
-                    // )
+                    
                   ],
                 ),
               ),

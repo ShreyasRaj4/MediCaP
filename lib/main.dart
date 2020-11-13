@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'GetXHelper/FirebaseController.dart';
 import 'package:MediCaP/InstanceBinding.dart';
-
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:MediCaP/register/login.dart';
 import 'home/home.dart';
 

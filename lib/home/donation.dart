@@ -1,3 +1,8 @@
+import 'package:MediCaP/database/databaseManager.dart';
+import 'package:MediCaP/home/home.dart';
+import 'package:MediCaP/home/homescreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DonationBlood extends StatefulWidget {
@@ -13,10 +18,12 @@ class _DonationBloodState extends State<DonationBlood> {
   final TextEditingController _phone = TextEditingController();
   final TextEditingController _bloodGroup = TextEditingController();
   final TextEditingController _city = TextEditingController();
-  /* final TextEditingController = TextEditingController();
-  final TextEditingController = TextEditingController();
-  final TextEditingController = TextEditingController();
-  @override */
+
+  CollectionReference bloodDonars =
+      FirebaseFirestore.instance.collection('bloodDonars');
+
+  User user = FirebaseAuth.instance.currentUser;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -109,7 +116,17 @@ class _DonationBloodState extends State<DonationBlood> {
               ),
             ),
             RaisedButton(
-              onPressed: () => print('send the data to the firebase'),
+              onPressed: () async {
+                await DatabaseManager().createBloodDonarData(
+                    _name.text,
+                    int.parse(_age.text),
+                    _sex.text,
+                    int.parse(_weight.text),
+                    int.parse(_phone.text),
+                    _bloodGroup.text,
+                    _city.text,
+                    user.uid);
+              },
               child: Text('Be A Donar'),
             ),
           ],
@@ -129,14 +146,21 @@ class DonationPlasma extends StatefulWidget {
 }
 
 class _DonationPlasmaState extends State<DonationPlasma> {
-  final TextEditingController _name =       TextEditingController();
-  final TextEditingController _age =        TextEditingController();
-  final TextEditingController _sex =        TextEditingController();
-  final TextEditingController _weight =     TextEditingController();
-  final TextEditingController _phone =      TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _age = TextEditingController();
+  final TextEditingController _sex = TextEditingController();
+  final TextEditingController _weight = TextEditingController();
+  final TextEditingController _phone = TextEditingController();
   final TextEditingController _bloodGroup = TextEditingController();
-  final TextEditingController _city =       TextEditingController();
-  @override 
+  final TextEditingController _city = TextEditingController();
+  final TextEditingController _coronaPoss = TextEditingController();
+
+  CollectionReference plasmaDonars =
+      FirebaseFirestore.instance.collection('plasmaDonars');
+
+  User user = FirebaseAuth.instance.currentUser;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -148,7 +172,7 @@ class _DonationPlasmaState extends State<DonationPlasma> {
         child: Column(
           children: [
             Text(
-              'For Pasma Donation',
+              'For Plasma Donation',
               style: TextStyle(fontSize: 25, color: Colors.black),
             ),
             Padding(
@@ -181,6 +205,17 @@ class _DonationPlasmaState extends State<DonationPlasma> {
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(10),
                   hintText: 'Sex',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _coronaPoss,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: 'Did you test +ve for COVID?(y/n)',
                 ),
               ),
             ),
@@ -229,7 +264,18 @@ class _DonationPlasmaState extends State<DonationPlasma> {
               ),
             ),
             RaisedButton(
-              onPressed: () => print('send the data to the firebase'),
+              onPressed: () async {
+                await DatabaseManager().createPlasmaDonarData(
+                    _name.text,
+                    int.parse(_age.text),
+                    _sex.text,
+                    _coronaPoss.text,
+                    int.parse(_weight.text),
+                    int.parse(_phone.text),
+                    _bloodGroup.text,
+                    _city.text,
+                    user.uid);
+              },
               child: Text('Be A LifeSaver'),
             ),
           ],

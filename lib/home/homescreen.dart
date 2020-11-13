@@ -1,6 +1,8 @@
+
 import 'package:MediCaP/home/bloodbanks.dart';
 import 'package:MediCaP/home/userprofile.dart';
 import 'package:MediCaP/profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -84,54 +86,83 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('   Need a Plasma donar?',
-                    style: GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
-                TextButton(
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('   Need a Plasma donar?',
+                      style:
+                          GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
+                ),
+                /* TextButton(
                   onPressed: null,
                   child: Text('See All',
                       style:
                           GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
-                )
+                ) */
               ],
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  UserProfile(
-                      'images/userphotos/profile1.jpg', 'O+', "Shreyas"),
-                  UserProfile(
-                      'images/userphotos/profile2.jpg', 'AB+', "Prasad"),
-                  UserProfile('images/userphotos/profile3.jpg', 'O-', "Shurti"),
-                  UserProfile('images/userphotos/profile4.jpg', 'B+', "Shreya"),
-                ],
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('plasmaDonars')
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: snapshot.data.docs
+                        .map((e) => UserProfile(
+                            e['name'], e['bloodGroup'], e['city'], e['sex']))
+                        .toList(),
+                  );
+                },
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('  Need a Blood donar?',
-                    style: GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
-                TextButton(
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('  Need a Blood donar?',
+                      style:
+                          GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
+                ),
+                /* TextButton(
                   onPressed: null,
                   child: Text('See All',
                       style:
                           GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
-                )
+                ) */
               ],
             ),
             SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  UserProfile('images/userphotos/profile5.jpg', 'AB+', "Priya"),
-                  UserProfile('images/userphotos/profile6.jpg', 'O+', "Hamsa"),
-                  UserProfile(
-                      'images/userphotos/profile7.jpg', 'A+', "Srinivas"),
-                  UserProfile('images/userphotos/profile8.jpg', 'AB-', "KCR"),
-                ],
-              ),
-            ),
+                scrollDirection: Axis.horizontal,
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('bloodDonars')
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: snapshot.data.docs
+                          .map((e) => UserProfile(
+                              e['name'], e['bloodGroup'], e['city'], e['sex']))
+                          .toList(),
+                    );
+                  },
+                )),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -152,11 +183,11 @@ class _HomeScreenState extends State<HomeScreen> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  BLoodBank('images/bloodbank1.jpg', 'Blood Bank of Dellas'),
-                  BLoodBank('images/bloodbank2.jpg', 'Blood bank of Madras'),
-                  BLoodBank('images/bloodbank3.jpg', 'Maratha Blood Bank'),
-                  BLoodBank('images/bloodbank4.jpg', 'Vijaya Blood Bank'),
-                  BLoodBank('images/bloodbank5.jpg', 'SLMS Blood Bank'),
+                  BLoodBank('images/bloodbank1.jpg', 'Blood Bank of Dellas','Hyderabad','987456321'),
+                  BLoodBank('images/bloodbank2.jpg', 'Blood bank of Madras','Guntur','98745638581'),
+                  BLoodBank('images/bloodbank3.jpg', 'Maratha Blood Bank','VishakaPatnam','981756321'),
+                  BLoodBank('images/bloodbank4.jpg', 'Vijaya Blood Bank','Mumbai','987472321'),
+                  BLoodBank('images/bloodbank5.jpg', 'SLMS Blood Bank','Hyderabad','987454321'),
                 ],
               ),
             ),
@@ -167,6 +198,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Image.asset(
                     'images/chart-of-blood-types-in-drops-medical-and-vector-14313368.jpg'),
               ),
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
+              child: Text('Made With Flutter❤',style: GoogleFonts.mavenPro(fontSize: 25, color: Colors.deepPurple[400],fontWeight: FontWeight.bold),),
             ),
           ],
         ),
