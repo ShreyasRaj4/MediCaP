@@ -1,138 +1,82 @@
-import 'dart:ui';
-
+import 'package:flip_card/flip_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shimmer/shimmer.dart';
 
 // ignore: must_be_immutable
 class UserProfile extends StatelessWidget {
   String name, bloodgroup, city, sex;
-  UserProfile(String name, String bloodgroup, String city, String sex) {
+  int phone;
+  UserProfile(
+      String name, String bloodgroup, String city, String sex, int phone) {
     this.name = name;
     this.bloodgroup = bloodgroup;
     this.city = city;
     this.sex = sex;
+    this.phone = phone;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 170,
-          height: 130,
-          decoration: BoxDecoration(
-            color: Colors.pinkAccent[100],
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.deepPurple[200]),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.deepPurple[200],
-                blurRadius: 1, // soften the shadow
-                spreadRadius: 0.5, //extend the shadow
-                offset: Offset(
-                  5.0, // Move to right 10  horizontally
-                  10.0, // Move to bottom 10 Vertically
-                ),
+    return FlipCard(
+      front: Card(
+        elevation: 20,
+        shadowColor: Colors.deepPurpleAccent,
+        margin: EdgeInsets.all(10),
+        color: Colors.limeAccent[100],
+        child: SizedBox(
+          height: 90,
+          width: MediaQuery.of(context).size.width / 2,
+          child: Column(
+            children: [
+              Text(
+                'Name: ${name}',
+                style: GoogleFonts.alegreya(fontSize: 30, color: Colors.deepPurple, fontWeight: FontWeight.w600),
+              ),
+              Text(
+                'Blood Group: ${bloodgroup}',
+                style: GoogleFonts.arvo(fontSize: 20, color: Colors.deepPurple),
               )
             ],
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'Name:  ',
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.black),
-                    ),
-                    Text(
-                      name,
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
-                    ),
-                  ],
+        ),
+      ),
+      back: Card(
+        elevation: 20,
+        shadowColor: Colors.amber,
+        margin: EdgeInsets.all(10),
+        color: Colors.blue[100],
+        child: Shimmer.fromColors(
+          baseColor: Colors.red,
+          highlightColor: Colors.green,
+          child: SizedBox(
+            height: 122,
+            width: MediaQuery.of(context).size.width / 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Phone: ${phone}',
+                  style:
+                      GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'BloodGroup:  ',
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.black),
-                    ),
-                    Text(
-                      bloodgroup,
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
-                    ),
-                  ],
+                Text('Sex: ${sex}'
+                 ,
+                  style:
+                      GoogleFonts.lato(fontSize: 20,),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'City:  ',
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.black),
-                    ),
-                    Text(
-                      city,
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
-                    ),
-                  ],
+                Text(
+                  'City: ${city}',
+                  style:
+                      GoogleFonts.lato(fontSize: 20, ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'Gender:  ',
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.black),
-                    ),
-                    Text(
-                      sex,
-                      style: GoogleFonts.lato(fontSize: 20, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-        SizedBox(
-          width: 180,
-        )
-      ],
+      ),
     );
   }
 }
-/*  Container(
-            height: MediaQuery.of(context).size.height / 4,
-            width: MediaQuery.of(context).size.width / 2.5,
-            decoration: new BoxDecoration(
-              border: Border.all(width: 5.0, color: Colors.white),
-              color: Colors.black,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: ExactAssetImage(
-                  filename,
-                ),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 5, // soften the shadow
-                  spreadRadius: 5.0, //extend the shadow
-                  offset: Offset(
-                    15.0, // Move to right 10  horizontally
-                    15.0, // Move to bottom 10 Vertically
-                  ),
-                )
-              ],
-            ),
-          ), */
+

@@ -171,7 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Builder(
       builder: (context) {
         return Scaffold(
-          backgroundColor: Colors.pink[50],
+          
           body: Column(
             children: <Widget>[
               SizedBox(height: kSpacingUnit.w * 5),

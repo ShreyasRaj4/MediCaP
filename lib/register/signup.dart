@@ -1,6 +1,5 @@
 import 'package:MediCaP/GetXHelper/FirebaseController.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,8 +8,6 @@ import 'login.dart';
 
 // ignore: must_be_immutable
 class SignUp extends GetWidget<FirebaseController> {
-  bool _showpassword = true;
-
   final _formkey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -33,7 +30,7 @@ class SignUp extends GetWidget<FirebaseController> {
                     top: 100,
                     left: 20,
                     child: Text(
-                      'SignIn',
+                      'SignUp',
                       style: TextStyle(
                         fontSize: 50,
                         color: Colors.black,
@@ -45,7 +42,7 @@ class SignUp extends GetWidget<FirebaseController> {
                     top: 170,
                     left: 20,
                     child: Text(
-                      'Please signin to continue.',
+                      'Please SignUp to continue.',
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -72,7 +69,7 @@ class SignUp extends GetWidget<FirebaseController> {
                               autofocus: false,
                               decoration: InputDecoration(
                                   prefixIcon: Icon(Icons.email),
-                                  hintText: 'UserName'),
+                                  hintText: 'Username'),
                             ),
                           ),
                           Padding(
@@ -86,8 +83,9 @@ class SignUp extends GetWidget<FirebaseController> {
                               autocorrect: false,
                               autofocus: false,
                               decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.email),
-                                  hintText: 'Email'),
+                                prefixIcon: Icon(Icons.email),
+                                hintText: 'Email',
+                              ),
                             ),
                           ),
                           Padding(

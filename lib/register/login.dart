@@ -11,8 +11,6 @@ import 'package:MediCaP/register/signup.dart';
 
 // ignore: must_be_immutable
 class Login extends GetWidget<FirebaseController> {
-  bool _showpassword = true;
-
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -103,21 +101,11 @@ class Login extends GetWidget<FirebaseController> {
                                 MaxLengthValidator(15,
                                     errorText: 'Should be 15 charecters Max')
                               ]),
-                              obscureText: _showpassword,
+                              obscureText: true,
                               decoration: InputDecoration(
                                 hintText: "Password",
-                                prefixIcon: Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    Icons.remove_red_eye,
-                                    color: this._showpassword
-                                        ? Colors.indigo
-                                        : Colors.orange,
-                                  ),
-                                  onPressed: () {
-                                    /* setState(() => this._showpassword =
-                                        !this._showpassword); */
-                                  },
+                                prefixIcon: Icon(
+                                  Icons.lock,
                                 ),
                               ),
                             ),
