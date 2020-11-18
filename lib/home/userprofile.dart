@@ -24,7 +24,7 @@ class UserProfile extends StatelessWidget {
         elevation: 20,
         shadowColor: Colors.deepPurpleAccent,
         margin: EdgeInsets.all(10),
-        color: Colors.limeAccent[100],
+        color: Colors.deepPurple[400],
         child: SizedBox(
           height: 90,
           width: MediaQuery.of(context).size.width / 2,
@@ -32,11 +32,11 @@ class UserProfile extends StatelessWidget {
             children: [
               Text(
                 'Name: ${name}',
-                style: GoogleFonts.alegreya(fontSize: 30, color: Colors.deepPurple, fontWeight: FontWeight.w600),
+                style: GoogleFonts.alegreya(fontSize: 30, color: Colors.orange[200], fontWeight: FontWeight.w600),
               ),
               Text(
                 'Blood Group: ${bloodgroup}',
-                style: GoogleFonts.arvo(fontSize: 20, color: Colors.deepPurple),
+                style: GoogleFonts.arvo(fontSize: 20, color: Colors.white),
               )
             ],
           ),
@@ -45,7 +45,7 @@ class UserProfile extends StatelessWidget {
       back: Card(
         elevation: 20,
         shadowColor: Colors.amber,
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(5),
         color: Colors.blue[100],
         child: Shimmer.fromColors(
           baseColor: Colors.red,
