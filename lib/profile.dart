@@ -171,82 +171,229 @@ class _ProfilePageState extends State<ProfilePage> {
     return Builder(
       builder: (context) {
         return Scaffold(
-          
-          body: Column(
-            children: <Widget>[
-              SizedBox(height: kSpacingUnit.w * 5),
-              header,
-              Expanded(
-                child: ListView(
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                SizedBox(height: kSpacingUnit.w * 5),
+                header,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 10),
-                          height: 150,
-                          width: 160,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.deepPurple,
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      height: 120,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.deepPurple,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 20,
                           ),
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                'Corona Cases India:',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),Text(
-                                '8.73M',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              )
-                            ],
+                          Text(
+                            'Corona Cases India:',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 10),
-                          height: 150,
-                          width: 160,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.deepPurple,
+                          StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('liveInfo')
+                                .snapshots(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: snapshot.data.docs
+                                    .map((e) => Text(
+                                          e['IndiaCases'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ))
+                                    .toList(),
+                              );
+                            },
                           ),
-                          child: Column(
-                            children: <Widget>[
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                'Number of donations:',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                              Text(
-                                '0',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      height: 120,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.deepPurple,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'World\'s Corona Cases:',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('liveInfo')
+                                .snapshots(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: snapshot.data.docs
+                                    .map((e) => Text(
+                                          e['WorldCases'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ))
+                                    .toList(),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      height: 120,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.deepPurple,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'Corona Cases India Today:',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('liveInfo')
+                                .snapshots(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: snapshot.data.docs
+                                    .map((e) => Text(
+                                          e['IndiaToday'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ))
+                                    .toList(),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      height: 120,
+                      width: 160,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.deepPurple,
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'World\'s Corona Cases:',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('liveInfo')
+                                .snapshots(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: snapshot.data.docs
+                                    .map((e) => Text(
+                                          e['WorldToday'],
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 20),
+                                        ))
+                                    .toList(),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(10),
+                  height: 120,
+                  width: 160,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.deepPurple,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'My Donations: ',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      Text(
+                        '0 ',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
