@@ -1,6 +1,4 @@
 import 'package:MediCaP/database/databaseManager.dart';
-import 'package:MediCaP/home/home.dart';
-import 'package:MediCaP/home/homescreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

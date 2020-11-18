@@ -1,4 +1,5 @@
 import 'package:MediCaP/home/bloodbanks.dart';
+
 import 'package:MediCaP/home/userprofile.dart';
 import 'package:MediCaP/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   double scaleFactor = 1;
 
   bool isDrawerOpen = false;
+
+  final TextEditingController _bloodGroup = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -32,55 +35,53 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             SizedBox(height: 30),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  isDrawerOpen
-                      ? IconButton(
-                          iconSize: 40,
-                          color: Colors.cyan,
-                          icon: Icon(Icons.arrow_back_ios),
-                          onPressed: () {
-                            setState(() {
-                              xOffset = 0;
-                              yOffset = 0;
-                              scaleFactor = 1;
-                              isDrawerOpen = false;
-                            });
-                          },
-                        )
-                      : IconButton(
-                          iconSize: 40,
-                          color: Colors.cyan,
-                          icon: Icon(Icons.menu),
-                          onPressed: () {
-                            setState(() {
-                              xOffset = 190;
-                              yOffset = 80;
-                              scaleFactor = 0.8;
-                              isDrawerOpen = true;
-                            });
-                          }),
-                  Text(
-                    'MEDICAP',
-                    style: GoogleFonts.mavenPro(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                isDrawerOpen
+                    ? IconButton(
+                        iconSize: 40,
+                        color: Colors.cyan,
+                        icon: Icon(Icons.arrow_back_ios),
+                        onPressed: () {
+                          setState(() {
+                            xOffset = 0;
+                            yOffset = 0;
+                            scaleFactor = 1;
+                            isDrawerOpen = false;
+                          });
+                        },
+                      )
+                    : IconButton(
+                        iconSize: 40,
+                        color: Colors.cyan,
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          setState(() {
+                            xOffset = 190;
+                            yOffset = 80;
+                            scaleFactor = 0.8;
+                            isDrawerOpen = true;
+                          });
+                        }),
+                Text(
+                  'MEDICAP',
+                  style: GoogleFonts.mavenPro(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
                   ),
-                  GestureDetector(
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProfilePage())),
-                    child: CircleAvatar(
-                      minRadius: 30,
-                      backgroundImage: AssetImage(
-                          'images/businessman-profile-cartoon_18591-58479.jpg'),
-                    ),
-                  )
-                ],
-              ),
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProfilePage())),
+                  child: CircleAvatar(
+                    minRadius: 30,
+                    backgroundImage: AssetImage(
+                        'images/businessman-profile-cartoon_18591-58479.jpg'),
+                  ),
+                )
+              ],
             ),
             SizedBox(height: 10),
             Row(
@@ -92,12 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style:
                           GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
                 ),
-                /* TextButton(
-                  onPressed: null,
-                  child: Text('See All',
-                      style:
-                          GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
-                ) */
+                
               ],
             ),
             SingleChildScrollView(
@@ -132,12 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       style:
                           GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
                 ),
-                /* TextButton(
-                  onPressed: null,
-                  child: Text('See All',
-                      style:
-                          GoogleFonts.lato(fontSize: 18, color: Colors.blue)),
-                ) */
+                
               ],
             ),
             SingleChildScrollView(
@@ -171,13 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   '   Nearby Blood Banks',
                   style: GoogleFonts.lato(fontSize: 18, color: Colors.blue),
                 ),
-                TextButton(
-                  onPressed: null,
-                  child: Text(
-                    'See All',
-                    style: GoogleFonts.lato(fontSize: 18, color: Colors.blue),
-                  ),
-                )
+                
               ],
             ),
             SingleChildScrollView(
