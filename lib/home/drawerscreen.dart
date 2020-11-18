@@ -5,13 +5,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../info.dart';
 
 class DrawerScreen extends GetWidget<FirebaseController> {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   User user = FirebaseAuth.instance.currentUser;
-  // String name= users.doc(user.uid).
+
+  _launchURL() async {
+  const url = 'https://github.com/ShreyasRaj4/MediCaP';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +106,7 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                                       actions: [
                                         FlatButton(
                                           child: Text('Sure'),
-                                          onPressed: () => Navigator.pop(context),
+                                          onPressed: _launchURL,
                                         ),
                                         FlatButton(
                                           child: Text('Sorry'),
@@ -117,10 +126,7 @@ class DrawerScreen extends GetWidget<FirebaseController> {
                                       actions: [
                                         FlatButton(
                                           child: Text('Sure'),
-                                          onPressed: () {
-                                            print('onpressed');
-                                            Navigator.pop(context);
-                                          },
+                                          onPressed: _launchURL,
                                         ),
                                         FlatButton(
                                           child: Text('Sorry'),
