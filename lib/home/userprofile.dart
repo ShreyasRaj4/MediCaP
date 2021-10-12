@@ -49,7 +49,7 @@ class UserProfile extends StatelessWidget {
         color: Colors.blue[100],
         child: Shimmer.fromColors(
           baseColor: Colors.red,
-          highlightColor: Colors.green,
+          highlightColor: Colors.red,
           child: SizedBox(
             height: 122,
             width: MediaQuery.of(context).size.width / 2,
